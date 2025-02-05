@@ -1,5 +1,6 @@
 package com.cristianleicht.workshopmongo.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,5 +33,14 @@ public class PostService {
 		
 		return repo.searchTitle(text);
 	}
+	
+	public List<Post> fullSearch(String text, Date minDate, Date maxDate){
+		
+		//para fazer a comparacao de datas, adicionar um dia a data máxima
+		maxDate = new Date(maxDate.getTime() + 86400000);
+		return repo.fullSearch(text, minDate, maxDate);
+		
+	}
+
 
 }
